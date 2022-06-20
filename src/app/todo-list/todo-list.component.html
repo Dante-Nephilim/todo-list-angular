@@ -1,0 +1,57 @@
+<div>
+  <div>
+    <h1 class="p-10">Todo List</h1>
+    <div class="p-10">
+      <input
+        type="text"
+        [(ngModel)]="newTodo.title"
+        placeholder="Enter a new todo"
+      />
+      <button class="px-10 border-2 border-gray-500" (click)="addTodo(newTodo)">
+        Add
+      </button>
+    </div>
+    <div class="p-10" *ngIf="selectedTodo">
+      <label for="title">Task Name:</label>
+      <input
+        class="border-2"
+        id="title"
+        [(ngModel)]="selectedTodo.title"
+        placeholder="title"
+      />
+      <button
+        type="button"
+        class="px-10 border-2 border-gray-500"
+        (click)="hideEditStatus()"
+      >
+        Finish
+      </button>
+    </div>
+    <ul>
+      <li *ngFor="let todo of todosArray">
+        <!-- <span class="p-10">{{ todo.id }}</span> -->
+        <span class="p-10">{{ todo.title }}</span>
+        <span class="p-10">{{ todo.completed }}</span>
+        <button
+          class="px-10 border-2 border-gray-500"
+          type="button"
+          (click)="changeStatus(todo.id)"
+        >
+          Change Status
+        </button>
+        <button
+          class="px-10 border-2 border-gray-500"
+          (click)="changeEditStatus(todo.id)"
+        >
+          Edit
+        </button>
+        <button
+          class="px-10 border-2 border-gray-500"
+          (click)="deleteTodo(todo.id)"
+        >
+          Delete
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>
